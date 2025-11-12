@@ -1,0 +1,3 @@
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  query: ["India", "Economy", "Stock"]
