@@ -24,7 +24,7 @@ class DataIngestion:
             return None
         
 
-    def extract_news(self, query:list[str], limit:int=5, country:str='in'):
+    def extract_news(self, query:list[str]=None, limit:int=5, country:str='in'):
         api = self.newsdata_connect()
         search_query = query or (self.config.query if self.config.query else 'finance')
         # Combine queries into a single OR-separated string with quotes

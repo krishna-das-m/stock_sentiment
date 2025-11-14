@@ -1,5 +1,12 @@
+import sys
+from pathlib import Path
+
+src_path = Path(__file__).parent.parent
+sys.path.append(str(src_path))
+
 from config.configuration import ConfigurationManager
 from components.data_ingestion import DataIngestion
+
 
 STAGE_NAME = "Data Ingestion stage"
 
