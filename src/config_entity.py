@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+import os
 
 @dataclass(frozen=True)
 class DataIngestionConfig:
@@ -30,3 +31,24 @@ class AppConfig:
     port: int = 8501
     debug: bool = False
     theme: str = "light"
+
+@dataclass(frozen=True)
+class DatabaseConfig:
+    """Database configuration"""
+    enabled: bool
+    type: str
+    host: str
+    port: int
+    database: str
+    user: str
+    password: str
+    pool_size: int = 10
+    charset: str = "utf8mb4"
+
+    def __post_init__(self):
+        # Replace ${ENV_VAR} with actual value
+        if self.password.startswith("${") and self.password.endswith("}"):
+            env_var = self.password[2:-1]
+            password = os.getenv(env_var)
+            if password:
+                object.__setattr__(self, 'password', password)

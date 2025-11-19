@@ -1,5 +1,5 @@
 from constants import *
-from config_entity import DataIngestionConfig, SentimentAnalysisConfig
+from config_entity import DataIngestionConfig, SentimentAnalysisConfig, DatabaseConfig
 from utils.common import read_yaml, create_directories
 
 
@@ -25,3 +25,17 @@ class ConfigurationManager:
             root_dir=config.root_dir
         )
         return sentiment_analysis_config
+    
+    def get_database_config(self):
+        config = self.config.database
+        database_config = DatabaseConfig(
+            enabled=config.enabled,
+            type=config.type,
+            host=config.host,
+            port=config.port,
+            database=config.database,
+            user=config.user,
+            password=config.password,
+            pool_size=config.get('pool_size', 10),
+            charset=config.get('charset', 'utf8mb4')
+        )
