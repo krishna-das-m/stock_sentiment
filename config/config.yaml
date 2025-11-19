@@ -1,3 +1,19 @@
+database:
+  enabled: true
+  type: "mysql"
+  host: "localhost"
+  port: 3306
+  database: "financial_news"
+  password: "${DB_PASSWORD}"
+  pool_size: 10
+  charset: "utf8mb4"
+
+# Data source preference
+data_source:
+  primary: "database"                  # "database" or "csv"
+  fallback: "csv"                      # Fallback if database fails
+
+
 data_ingestion:
   root_dir: artifacts/data_ingestion
   query: ["India", "Economy", "Stock"]
