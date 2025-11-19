@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import pickle
+from dotenv import load_dotenv
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -15,8 +16,9 @@ class DataIngestion:
         self.all_news_articles = None
     
     def newsdata_connect(self):
+        load_dotenv
         try:
-            api = NewsDataApiClient(apikey='pub_965468a202be412d80928d294b632639')
+            api = NewsDataApiClient(apikey=os.getenv('NEWSDATA_API_TOKEN'))
             print('connected to API')
             return api
         except Exception as e:
