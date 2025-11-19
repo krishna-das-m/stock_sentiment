@@ -1,11 +1,12 @@
 database:
-  enabled: true
+  enabled: True
   type: "mysql"
   host: "localhost"
   port: 3306
   database: "financial_news"
-  password: "${DB_PASSWORD}"
-  pool_size: 10
+  user: "finews_user"
+  password: "${MYSQL_PASSWORD}"
+  pool_size: 5
   charset: "utf8mb4"
 
 # Data source preference

@@ -2,7 +2,6 @@ from constants import *
 from config_entity import DataIngestionConfig, SentimentAnalysisConfig, DatabaseConfig
 from utils.common import read_yaml, create_directories
 
-
 class ConfigurationManager:
     def __init__(self, config_filepath=CONFIG_FILE_PATH,
                         ):
@@ -39,3 +38,4 @@ class ConfigurationManager:
             pool_size=config.get('pool_size', 10),
             charset=config.get('charset', 'utf8mb4')
         )
+        return database_config

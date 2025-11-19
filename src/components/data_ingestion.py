@@ -1,10 +1,7 @@
-import pandas as pd
 import os
 import pickle
 from dotenv import load_dotenv
 
-from dataclasses import dataclass
-from pathlib import Path
 from newspaper import Article
 from newsdataapi import NewsDataApiClient
 
