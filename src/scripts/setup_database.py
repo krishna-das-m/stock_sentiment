@@ -44,45 +44,6 @@ class Database:
             logger.error(f"Error getting connection: {e}")
             return None
         
-    # ========== Article Operations ========== #
+    
 
-    def insert_articles_batch(self, articles:List[Dict]) ->bool:
-        if not self.config.enabled:
-            return (0, len(articles))
-        
-        connection = self.get_connection()
-        if not connection:
-            return (0, len(articles))
-        
-        successful = 0
-        failed = 0
-
-        cursor = connection.cursor()
-        query = """
-                INSERT INTO news_articles 
-                (article_id, title, description, content, source, published_date,
-                url, category, country, language)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """
-        for article in articles:
-                try:
-                    data = (
-                        article.get('article_id'),
-                        article.get('title'),
-                        article.get('description', ''),
-                        article.get('content', ''),
-                        article.get('source', 'Unknown'),
-                        article.get('published_date'),
-                        article.get('url', ''),
-                        article.get('category', 'business'),
-                        article.get('country', 'IN'),
-                        article.get('language', 'en')
-                    )
-                    cursor.execute(query, data)
-                    successful += 1
-                except mysql.connector.IntegrityError:
-                    failed += 1
-        connection.commit()
-        logger.info(f"Batch insert: {successful} success, {failed} failed")
-        cursor.close()
-        connection.close()  
+    
